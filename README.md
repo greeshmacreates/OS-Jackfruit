@@ -56,49 +56,48 @@ sudo ./engine run beta / "ls"
 
 ### Screenshot 1 — Container execution
 
-![multi-container](screenshots/01-multi-container.png)
-
+![multi-container](screenshots/01-multi-container.jpeg)
 ---
 
 ### Screenshot 2 — Metadata tracking
 
-![ps-metadata](screenshots/02-ps-metadata.png)
+![ps-metadata](screenshots/02-ps-metadata.jpeg)
 
 ---
 
 ### Screenshot 3 — Logging system
 
-![logging](screenshots/03-logging.png)
+![logging](screenshots/03-logging.jpeg)
 
 ---
 
 ### Screenshot 4 — Multiple containers
 
-![cli-ipc](screenshots/04-cli-ipc.png)
+![cli-ipc](screenshots/04-cli-ipc.jpeg)
 
 ---
 
 ### Screenshot 5 — Soft limit logs
 
-![soft-limit](screenshots/05-soft-limit.png)
+![soft-limit](screenshots/05-soft-limit.jpeg)
 
 ---
 
 ### Screenshot 6 — Hard limit enforcement
 
-![hard-limit](screenshots/06-hard-limit.png)
+![hard-limit](screenshots/06-hard-limit.jpeg)
 
 ---
 
 ### Screenshot 7 — Scheduling experiment
 
-![scheduling](screenshots/07-scheduling.png)
+![scheduling](screenshots/07-scheduling.jpeg)
 
 ---
 
 ### Screenshot 8 — Clean teardown
 
-![teardown](screenshots/08-teardown.png)
+![teardown](screenshots/08-teardown.jpeg)
 
 ---
 
