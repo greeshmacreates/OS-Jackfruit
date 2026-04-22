@@ -63,11 +63,16 @@ sudo ./engine logs alpha
 # Stop a container
 sudo ./engine stop alpha
 ```
+### Run Containers (Terminal 2)
 
+sudo ./engine run alpha ./rootfs "echo hello"
+sudo ./engine run beta ./rootfs "ls"
+```
 ### View kernel monitor events
 ```bash
 sudo dmesg | tail -20
 ```
+
 
 ### Clean teardown
 ```bash
@@ -91,29 +96,29 @@ ps aux | grep defunct
 ### Screenshot 1 — Multi-container supervision
 Two containers (alpha, beta) running simultaneously under one supervisor process. Container `alpha` is started with `pid=15283` and shown in `ps` output as `running` with soft=40MB, hard=64MB. Container `beta` is then started with `/memory_hog` and `--soft-mib 10 --hard-mib 20`.
 
-![multi-container](screenshots/01-multi-container.png)
+c:\Users\Greeshma\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\3BE4BD69B1D695451A4C483DC6E6B0B4CBE48073\transfers\2026-17\WhatsApp Image 2026-04-21 at 10.02.08 PM.jpeg
 
 ### Screenshot 2 — Metadata tracking
 `ps` command output showing container ID, PID, state, soft/hard memory limits. Shows three containers: `gamma` (running), `beta` (killed), `alpha` (exited) — demonstrating full lifecycle state tracking across multiple containers.
 
-![ps-metadata](screenshots/02-ps-metadata.png)
+c:\Users\Greeshma\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\3BE4BD69B1D695451A4C483DC6E6B0B4CBE48073\transfers\2026-17\WhatsApp Image 2026-04-21 at 10.03.51 PM.jpeg
 
 ### Screenshot 3 — Bounded-buffer logging
 `logs alpha` command output showing `hello` captured from the container's stdout through the pipe → bounded buffer → logger thread pipeline.
 
-![logging](screenshots/03-logging.png)
+c:\Users\Greeshma\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\3BE4BD69B1D695451A4C483DC6E6B0B4CBE48073\transfers\2026-17\WhatsApp Image 2026-04-21 at 10.08.41 PM.jpeg
 
 ### Screenshot 4 — CLI and IPC
 CLI command issued from Terminal 2 while supervisor runs in Terminal 1. Shows `engine ps` returning live container metadata over the UNIX domain socket (`/tmp/mini_runtime.sock`), with containers `gamma` (running, pid=17099), `beta` (killed), and `alpha` (exited).
 
-![cli-ipc](screenshots/04-cli-ipc.png)
+c:\Users\Greeshma\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\3BE4BD69B1D695451A4C483DC6E6B0B4CBE48073\transfers\2026-17\WhatsApp Image 2026-04-21 at 10.10.04 PM.jpeg
 
 ### Screenshot 5 — Soft-limit warning
 `dmesg` output filtered for `hogtest` showing:
 `SOFT LIMIT container=hogtest pid=17258 rss=11083776 limit=10485760`
 followed by `HARD LIMIT` and unregister — demonstrating the two-level enforcement policy.
 
-![soft-limit](screenshots/05-soft-limit.png)
+c:\Users\Greeshma\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\3BE4BD69B1D695451A4C483DC6E6B0B4CBE48073\transfers\2026-17\WhatsApp Image 2026-04-21 at 10.36.08 PM.jpeg
 
 ### Screenshot 6 — Hard-limit enforcement
 Combined `dmesg` and `engine ps` output showing:
@@ -121,7 +126,7 @@ Combined `dmesg` and `engine ps` output showing:
 - `HARD LIMIT container=hogtest pid=17258 rss=21569536 limit=20971520`
 - `engine ps` confirms container state changed to `killed` with soft=10, hard=20.
 
-![hard-limit](screenshots/06-hard-limit.png)
+c:\Users\Greeshma\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\3BE4BD69B1D695451A4C483DC6E6B0B4CBE48073\transfers\2026-17\WhatsApp Image 2026-04-21 at 10.36.40 PM.jpeg
 
 ### Screenshot 7 — Scheduling experiment
 `top` output showing two `cpu_hog` containers running concurrently:
@@ -130,7 +135,7 @@ Combined `dmesg` and `engine ps` output showing:
 
 Demonstrates CFS weight-based scheduling — the higher-priority process receives proportionally more CPU time slices.
 
-![scheduling](screenshots/07-scheduling.png)
+c:\Users\Greeshma\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\3BE4BD69B1D695451A4C483DC6E6B0B4CBE48073\transfers\2026-17\WhatsApp Image 2026-04-21 at 10.55.11 PM.jpeg
 
 ### Screenshot 8 — Clean teardown
 `ps aux | grep defunct` and `dmesg` output showing:
@@ -139,7 +144,7 @@ Demonstrates CFS weight-based scheduling — the higher-priority process receive
 - No runtime-created zombie processes after shutdown.
 - Full container lifecycle events visible in kernel log confirming clean module operation.
 
-![teardown](screenshots/08-teardown.png)
+c:\Users\Greeshma\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\3BE4BD69B1D695451A4C483DC6E6B0B4CBE48073\transfers\2026-17\WhatsApp Image 2026-04-21 at 10.58.13 PM.jpeg
 
 ---
 
